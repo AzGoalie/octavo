@@ -1,5 +1,7 @@
 import styles from './index.module.css';
 
+import { core } from '@octavo/core';
+
 export function Index() {
   /*
    * Replace the elements below with your own.
@@ -9,6 +11,9 @@ export function Index() {
   return (
     <div className={styles.page}>
       <div className="wrapper">
+        <div>
+          <p>Testing shared code: {core()}</p>
+        </div>
         <div className="container">
           <div id="welcome">
             <h1>
