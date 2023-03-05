@@ -1,5 +1,6 @@
 import styles from './index.module.css';
 
+import { io } from 'socket.io-client';
 import { core } from '@octavo/core';
 
 export function Index() {
@@ -8,6 +9,12 @@ export function Index() {
    *
    * Note: The corresponding styles are in the ./index.css file.
    */
+  const socket = io();
+
+  console.log('Ping...');
+  socket.emit('ping');
+  socket.on('pong', () => console.log('Pong!'));
+
   return (
     <div className={styles.page}>
       <div className="wrapper">
