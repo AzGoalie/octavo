@@ -16,12 +16,17 @@ const io = new Server(server);
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
+let clients = 0;
 io.on('connection', (socket) => {
-  console.log('Client connected');
+  clients++;
+  console.log(`Client connected: ${clients} clients`);
+  io.emit('clients', clients);
 
-  socket.on('disconnect', (reason) =>
-    console.log(`Client disconnected: ${reason}`)
-  );
+  socket.on('disconnect', (reason) => {
+    clients--;
+    console.log(`Client disconnected: ${reason}\n${clients} clients`);
+    io.emit('clients', clients);
+  });
 
   socket.on('ping', () => socket.emit('pong'));
 });
