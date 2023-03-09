@@ -27,8 +27,6 @@ io.on('connection', (socket) => {
     console.log(`Client disconnected: ${reason}\n${clients} clients`);
     io.emit('clients', clients);
   });
-
-  socket.on('ping', () => socket.emit('pong'));
 });
 
 const port = process.env.PORT || 3333;
